@@ -6,9 +6,10 @@ dL = [0] * (N + 1)
 cL = [0] * (N + 1)
 
 
-def dp(d: int, cs: int):
+def solution(d: int, cs: int):
     global costMax
     global costSum
+    print(d, cs)
     if d + dL[d] > N+1:
         if costMax < cs:
             costMax = cs
@@ -20,7 +21,7 @@ def dp(d: int, cs: int):
         costSum = cL[d] + cs
         tmp = costSum
         for i in range((d+dL[d]), N+1):
-            dp(i, tmp)
+            solution(i, tmp)
 
 
 for i in range(1, N+1):
@@ -29,8 +30,11 @@ for i in range(1, N+1):
     dL[i] = D
     cL[i] = C
 
+print("dL", dL, "\n", "cL", cL)
+
 for i in range(1, N + 1):
     if i + dL[i] <= N + 1:
-        dp(i, 0)
-
+        print("day:", i)
+        solution(i, 0)
+        print("costMax:", costMax)
 print(costMax)
